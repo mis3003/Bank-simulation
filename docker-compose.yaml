@@ -1,0 +1,50 @@
+services:
+
+  gateway:
+    build:
+      context: .
+      dockerfile: nginx.Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+    - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    environment:
+      - SERVER_PORT=$SERVER_PORT
+    depends_on:
+      - app
+    restart: always
+
+  app:
+    build: .
+    image: mb_bank_simulation
+    expose:
+      - "${SERVER_PORT}"
+    environment:
+      - DB_URL=$DB_URL
+      - DB_USERNAME=$DB_USERNAME
+      - DB_PASSWORD=$DB_PASSWORD
+      - SERVER_PORT=$SERVER_PORT
+    depends_on:
+      - db
+    restart: unless-stopped
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: any
+        delay: 5s
+        
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=$DB_USERNAME
+      - POSTGRES_PASSWORD=$DB_PASSWORD
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
