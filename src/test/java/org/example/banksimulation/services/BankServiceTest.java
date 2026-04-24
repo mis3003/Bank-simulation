@@ -1,14 +1,10 @@
 package org.example.banksimulation.services;
 
 import org.example.banksimulation.dto.StockDto;
-import org.example.banksimulation.reposiories.BankRepository;
-import org.example.banksimulation.services.BankService;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.transaction.annotation.Transactional;
 import org.example.banksimulation.TestcontainersConfiguration;
 

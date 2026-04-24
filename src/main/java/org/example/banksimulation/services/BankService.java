@@ -1,8 +1,8 @@
 package org.example.banksimulation.services;
 
 import org.example.banksimulation.dto.StockDto;
-import org.example.banksimulation.entieties.BankStock;
-import org.example.banksimulation.reposiories.BankRepository;
+import org.example.banksimulation.entities.BankStock;
+import org.example.banksimulation.repositories.BankRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

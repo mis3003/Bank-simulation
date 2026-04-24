@@ -22,7 +22,6 @@ services:
       - DB_URL=$DB_URL
       - DB_USERNAME=$DB_USERNAME
       - DB_PASSWORD=$DB_PASSWORD
-      - SERVER_PORT=$SERVER_PORT
     depends_on:
       - db
     restart: unless-stopped

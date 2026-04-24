@@ -1,4 +1,4 @@
-package org.example.banksimulation.entieties;
+package org.example.banksimulation.entities;
 
 import jakarta.persistence.*;
 

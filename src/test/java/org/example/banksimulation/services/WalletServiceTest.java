@@ -1,8 +1,8 @@
 package org.example.banksimulation.services;
 
 import org.example.banksimulation.TestcontainersConfiguration;
-import org.example.banksimulation.entieties.BankStock;
-import org.example.banksimulation.reposiories.BankRepository;
+import org.example.banksimulation.entities.BankStock;
+import org.example.banksimulation.repositories.BankRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -48,7 +48,7 @@ class WalletServiceTest {
         walletService.trade("wallet1", "stock1", "buy");
 
         // then
-        var bankStock = bankRepository.findByName("stock1");
+        var bankStock = bankRepository.findByNameWithLock("stock1");
         assertThat(bankStock.get().getQuantity()).isEqualTo(9);
     }
 

@@ -2,12 +2,12 @@ package org.example.banksimulation.services;
 
 import org.example.banksimulation.dto.StockDto;
 import org.example.banksimulation.dto.WalletDto;
-import org.example.banksimulation.entieties.AuditLog;
-import org.example.banksimulation.entieties.Wallet;
-import org.example.banksimulation.entieties.WalletStock;
-import org.example.banksimulation.reposiories.AuditLogRepository;
-import org.example.banksimulation.reposiories.BankRepository;
-import org.example.banksimulation.reposiories.WalletRepository;
+import org.example.banksimulation.entities.AuditLog;
+import org.example.banksimulation.entities.Wallet;
+import org.example.banksimulation.entities.WalletStock;
+import org.example.banksimulation.repositories.AuditLogRepository;
+import org.example.banksimulation.repositories.BankRepository;
+import org.example.banksimulation.repositories.WalletRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,7 +30,7 @@ public class WalletService {
     }
 
     public void trade(String walletId, String stockName, String type) {
-        var bankStock = bankRepository.findByName(stockName)
+        var bankStock = bankRepository.findByNameWithLock(stockName)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Stock not found"));
 
         var wallet = walletRepository.findById(walletId)

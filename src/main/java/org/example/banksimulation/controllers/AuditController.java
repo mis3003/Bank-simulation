@@ -2,7 +2,7 @@ package org.example.banksimulation.controllers;
 
 import org.example.banksimulation.dto.AuditLogDto;
 import org.example.banksimulation.dto.AuditLogResponse;
-import org.example.banksimulation.reposiories.AuditLogRepository;
+import org.example.banksimulation.repositories.AuditLogRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
